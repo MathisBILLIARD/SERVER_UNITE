@@ -23,23 +23,19 @@ let BeersService = class BeersService {
     }
     async getAll() {
         const res = await this.beersRepository.find();
-        console.log('res is :', res);
         return res;
     }
     async getById(id) {
         const res = await this.beersRepository.findOneBy({ id: id });
-        console.log('get by id');
         if (!res) {
             throw new common_1.NotFoundException(`beer with id ${id} could not be found`);
         }
         return res;
     }
     async getByName(beerName) {
-        console.log(beerName);
         const res = await this.beersRepository.findBy({
             name: (0, typeorm_2.Like)(`%${beerName}%`),
         });
-        console.log('res is :', res);
         if (!res) {
             throw new common_1.NotFoundException(`beer with name ${beerName} could not be found`);
         }
@@ -47,7 +43,6 @@ let BeersService = class BeersService {
     }
     async getRandom() {
         const res = await this.beersRepository.find();
-        console.log('res is :', res);
         return res;
     }
     async createBeerDto(createBeerDto) {

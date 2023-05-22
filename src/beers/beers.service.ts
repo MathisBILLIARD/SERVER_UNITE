@@ -13,13 +13,11 @@ export class BeersService {
 
     async getAll(){
         const res = await this.beersRepository.find();
-        console.log('res is :', res);
         return res;
     }
 
     async getById(id: number): Promise<Beers> {
         const res = await this.beersRepository.findOneBy({ id: id });
-        console.log('get by id');
         if (!res) {
           throw new NotFoundException(`beer with id ${id} could not be found`);
         }
@@ -27,11 +25,10 @@ export class BeersService {
       }
     
     async getByName(beerName: string): Promise<Beers[]> {
-        console.log(beerName)
         const res = await this.beersRepository.findBy({
           name : Like(`%${beerName}%`),
         });
-        console.log('res is :', res);
+    
         if (!res) {
           throw new NotFoundException(`beer with name ${beerName} could not be found`);
         }
@@ -40,7 +37,6 @@ export class BeersService {
 
     async getRandom(){
         const res = await this.beersRepository.find();
-        console.log('res is :', res);
         return res;
     }
 

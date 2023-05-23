@@ -7,11 +7,13 @@ import { BeersService } from './beers/beers.service';
 import { Connexion } from './connexion/connexion.entity';
 import { ConnexionController } from './connexion/connexion.controller';
 import { ConnexionService } from './connexion/connexion.service';
+import { BeerBarController } from './beer-bar/beer-bar.controller';
+import { BeerBarModule } from './beer-bar/beer-bar.module';
 
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig),BeersModule,TypeOrmModule.forFeature([Connexion])],
-  controllers: [BeersController, ConnexionController],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig),BeersModule,TypeOrmModule.forFeature([Connexion]), BeerBarModule],
+  controllers: [BeersController, ConnexionController, BeerBarController],
   providers: [BeersService, ConnexionService],
 })
 export class AppModule {}

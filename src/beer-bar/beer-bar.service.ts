@@ -57,4 +57,5 @@ export class BarService {
         console.log(`SELECT Beer_JSON->'$.price' FROM beer_bar WHERE Bar_name ="`+ bar_name + `";`);
         return bar
     }
+
 }

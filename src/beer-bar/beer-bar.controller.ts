@@ -27,6 +27,11 @@ export class BeerBarController {
     }
 }
 
+@Get('/barjson/:bar_name')
+async getBarjson(@Param('bar_name') bar_name: string){
+  return this.barService.Get_BarJSON(bar_name)
+}
+
 @Get('/Bar_beer/:beer_name/:indexbeer/beer/:bar_in_radius/:bar_in_tabbar')   
 async getBarfromBeer(@Param('beer_name') beer_name: string,@Param('indexbeer') indexbeer: string,@Param('bar_in_radius') bar_in_radius: string,@Param('bar_in_tabbar') bar_in_tabbar: string){
   return this.barService.get_Bar_from_Beer_file(beer_name,indexbeer,bar_in_radius,bar_in_tabbar);   

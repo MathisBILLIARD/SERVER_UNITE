@@ -9,7 +9,7 @@ export class BeerBarController {
     try {
       console.log('test');
       const address = '';
-      const apiKey = 'AIzaSyDuBnAv5wHr7Pi1Lxrd9CBRPIy76IS8cxk';
+      const apiKey = 'AIzaSyBnHucHMMevJkPoiy4Aio7ZJlPtRLZbQN8';
       
       const apiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${longitude},${latitude}&radius=${radius}&keyword=bar&key=${apiKey}&Atmosphere=serves_beer`;
   

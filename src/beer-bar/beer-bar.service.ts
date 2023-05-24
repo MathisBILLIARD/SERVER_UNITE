@@ -33,7 +33,7 @@ export class BarService {
     }
 
     async getBarBeer(): Promise<string[]> {
-             const bar = await this.ConnexionRepository
+         const bar = await this.ConnexionRepository
          .createQueryBuilder('beer_bar')
          .select("Beer_JSON->'$.beer_name'", 'beer_name')
          .getRawMany();

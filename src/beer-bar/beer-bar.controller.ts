@@ -37,7 +37,7 @@ async getBarfromBeer(@Param('beer_name') beer_name: string,@Param('indexbeer') i
   return this.barService.get_Bar_from_Beer_file(beer_name,indexbeer,bar_in_radius,bar_in_tabbar);   
 }
 
-@Get('/Bar_beer/:beer_name/:indexbeer/beer/:bar_in_radius')   
+@Get('/Bar_beer/:beer_name/:indexbeer/beer/ash1/ash2/:bar_in_radius')   
 async getBarfromBeers(@Param('beer_name') beer_name: string,@Param('indexbeer') indexbeer: string,@Param('bar_in_radius') bar_in_radius: string){
   return this.barService.get_Bar_from_Beer_file_empty(beer_name,indexbeer,bar_in_radius);   
 }

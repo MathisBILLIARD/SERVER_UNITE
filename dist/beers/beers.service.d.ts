@@ -7,6 +7,6 @@ export declare class BeersService {
     getAll(): Promise<Beers[]>;
     getById(id: number): Promise<Beers>;
     getByName(beerName: string): Promise<Beers[]>;
-    getRandom(): Promise<Beers[]>;
+    getRandom(): Promise<Beers>;
     createBeerDto(createBeerDto: CreateBeerDto): Promise<Beers>;
 }

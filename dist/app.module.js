@@ -16,12 +16,14 @@ const beers_service_1 = require("./beers/beers.service");
 const connexion_entity_1 = require("./connexion/connexion.entity");
 const connexion_controller_1 = require("./connexion/connexion.controller");
 const connexion_service_1 = require("./connexion/connexion.service");
+const beer_bar_controller_1 = require("./beer-bar/beer-bar.controller");
+const beer_bar_module_1 = require("./beer-bar/beer-bar.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(typeorm_config_1.typeOrmConfig), beers_module_1.BeersModule, typeorm_1.TypeOrmModule.forFeature([connexion_entity_1.Connexion])],
-        controllers: [beers_controller_1.BeersController, connexion_controller_1.ConnexionController],
+        imports: [typeorm_1.TypeOrmModule.forRoot(typeorm_config_1.typeOrmConfig), beers_module_1.BeersModule, typeorm_1.TypeOrmModule.forFeature([connexion_entity_1.Connexion]), beer_bar_module_1.BeerBarModule],
+        controllers: [beers_controller_1.BeersController, connexion_controller_1.ConnexionController, beer_bar_controller_1.BeerBarController],
         providers: [beers_service_1.BeersService, connexion_service_1.ConnexionService],
     })
 ], AppModule);

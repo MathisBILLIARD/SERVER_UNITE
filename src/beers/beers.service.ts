@@ -36,7 +36,12 @@ export class BeersService {
     }
 
     async getRandom(){
-        const res = await this.beersRepository.find();
+        let randomID = Math.floor(Math.random() * 233729);
+        let res = await this.beersRepository.findOneBy({ id: randomID });;
+        while(res.img_original === null){
+          randomID = Math.floor(Math.random() * 233729);
+          res = await this.beersRepository.findOneBy({ id: randomID });;
+        }
         return res;
     }
 

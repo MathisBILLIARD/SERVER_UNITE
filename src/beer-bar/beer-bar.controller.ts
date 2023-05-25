@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Res} from '@nestjs/common';
 import { BarService } from './beer-bar.service';
+import { Response } from 'express'
 
 @Controller('beer-bar')
 export class BeerBarController {
@@ -46,4 +47,64 @@ async getBarfromBeers(@Param('beer_name') beer_name: string,@Param('indexbeer') 
 async getfrPriceomBeer(@Param('bar_name') bar_name: string,@Param('indexJSON') indexJSON: string){
   return this.barService.get_Price_from_Beer_file(bar_name,indexJSON);   
 }
+
+@Get(':photo_reference/bar_image')
+
+  async getPhoto(@Param('photo_reference') photo_reference: string, @Res() res: Response) {
+
+    try {
+
+      const apiKey = 'AIzaSyDuBnAv5wHr7Pi1Lxrd9CBRPIy76IS8cxk';//AIzaSyDuBnAv5wHr7Pi1Lxrd9CBRPIy76IS8cxk
+
+      const apiUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photo_reference}&key=${apiKey}`;
+
+
+
+
+      const response = await fetch(apiUrl);
+
+      console.log("TEMAAAAAAAAAAAAAA LIMAGE")
+
+      console.log(response)
+
+
+
+
+      const data = await response.blob();
+
+      console.log(data)
+
+
+
+
+      const buffer = await data.arrayBuffer();
+
+      const imageData = Buffer.from(buffer);
+
+
+
+
+      res.setHeader('Content-Type', 'image/png');
+
+      res.send(imageData);
+
+
+
+
+      //return data;
+
+
+
+
+    } catch (error) {
+
+      // Traitez les erreurs ici
+
+      console.error(error);
+
+      return JSON.stringify({ error: "Une erreur s'est produite lors de la récupération des données." });
+
+    }
+
+  }
 }

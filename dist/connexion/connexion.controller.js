@@ -20,18 +20,20 @@ const platform_express_1 = require("@nestjs/platform-express");
 const path = require("path");
 const multer_1 = require("multer");
 const rxjs_1 = require("rxjs");
-const path_1 = require("path");
 let ConnexionController = class ConnexionController {
     constructor(connexionService) {
         this.connexionService = connexionService;
     }
     getPrenom() {
+        console.log('Requête GET /nom reçue');
         return this.connexionService.getPrenom();
     }
     getEmail() {
+        console.log('Requête GET /email reçue');
         return this.connexionService.getEmail();
     }
     getMdp() {
+        console.log('Requête GET /pass reçue');
         return this.connexionService.getMdp();
     }
     getPersonne(email) {
@@ -43,33 +45,19 @@ let ConnexionController = class ConnexionController {
     deleteClient(id) {
         return this.connexionService.deleteClient(id);
     }
-    async createConnexion(id, prenom, nom, email, mdp) {
+    async createConnexion(id, prenom, nom, email, mdp, phonenumber) {
         const connec = new connexion_entity_1.Connexion();
         connec.id = id;
-        connec.prenom = prenom;
-        connec.nom = nom;
+        connec.firstname = prenom;
+        connec.name = nom;
         connec.email = email;
-        connec.mdp = mdp;
+        connec.password = mdp;
+        connec.phonenumber = phonenumber;
         await connec.save();
         return connec;
     }
     upload(file) {
         return (0, rxjs_1.of)({ imagePath: file.filename });
-    }
-    async getBiere(id) {
-        return this.connexionService.getBiere(id);
-    }
-    async postBeer(id, beerId, client) {
-        return this.connexionService.postBeer(id, beerId, client);
-    }
-    async getImage(imageName, res) {
-        try {
-            const imagePath = (0, path_1.join)(process.cwd(), 'upload', imageName);
-            return res.sendFile(imagePath);
-        }
-        catch (error) {
-            return res.status(404).json({ error: 'Image not found' });
-        }
     }
 };
 __decorate([
@@ -116,12 +104,13 @@ __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('image')),
     __param(0, (0, common_1.Body)('id')),
-    __param(1, (0, common_1.Body)('prenom')),
-    __param(2, (0, common_1.Body)('nom')),
+    __param(1, (0, common_1.Body)('firstname')),
+    __param(2, (0, common_1.Body)('name')),
     __param(3, (0, common_1.Body)('email')),
-    __param(4, (0, common_1.Body)('mdp')),
+    __param(4, (0, common_1.Body)('password')),
+    __param(5, (0, common_1.Body)('phonenumber')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String, String]),
+    __metadata("design:paramtypes", [String, String, String, String, String, String]),
     __metadata("design:returntype", Promise)
 ], ConnexionController.prototype, "createConnexion", null);
 __decorate([
@@ -141,30 +130,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", rxjs_1.Observable)
 ], ConnexionController.prototype, "upload", null);
-__decorate([
-    (0, common_1.Get)('biere/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], ConnexionController.prototype, "getBiere", null);
-__decorate([
-    (0, common_1.Patch)('biere/:id/:beerId'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Param)('beerId')),
-    __param(2, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, connexion_entity_1.Connexion]),
-    __metadata("design:returntype", Promise)
-], ConnexionController.prototype, "postBeer", null);
-__decorate([
-    (0, common_1.Get)('photo/:imagename'),
-    __param(0, (0, common_1.Param)('imagename')),
-    __param(1, (0, common_1.Res)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
-    __metadata("design:returntype", Promise)
-], ConnexionController.prototype, "getImage", null);
 ConnexionController = __decorate([
     (0, common_1.Controller)('connexion'),
     __metadata("design:paramtypes", [connexion_service_1.ConnexionService])

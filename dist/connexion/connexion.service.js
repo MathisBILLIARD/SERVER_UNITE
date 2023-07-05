@@ -21,13 +21,14 @@ let ConnexionService = class ConnexionService {
     constructor(ConnexionRepository) {
         this.ConnexionRepository = ConnexionRepository;
     }
-    async createConnexion(id, prenom, nom, email, mdp) {
+    async createConnexion(id, prenom, nom, email, mdp, phonenumber) {
         const connec = new connexion_entity_1.Connexion();
         connec.id = id;
-        connec.prenom = prenom;
-        connec.nom = nom;
+        connec.firstname = prenom;
+        connec.name = nom;
         connec.email = email;
-        connec.mdp = mdp;
+        connec.password = mdp;
+        connec.phonenumber = phonenumber;
         await connec.save();
         return connec;
     }
@@ -38,100 +39,47 @@ let ConnexionService = class ConnexionService {
     }
     async getPrenom() {
         const res = await this.ConnexionRepository.find();
-        const nom = res.map(iencli => iencli.prenom);
+        const nom = res.map(iencli => iencli.firstname);
         return nom;
     }
     async getMdp() {
         const res = await this.ConnexionRepository.find();
-        const mdp = res.map(pass => pass.mdp);
+        const mdp = res.map(pass => pass.password);
         return mdp;
     }
     async getPersonne(email) {
         const personne = await this.ConnexionRepository.findOne({ where: { email } });
         return personne;
     }
-    async getImagePersonne(email) {
-        const photo = await this.ConnexionRepository.findOne({ where: { email } });
-        return photo ? photo.image : null;
+    async getPhoneNumber(email) {
+        const phone = await this.ConnexionRepository.findOne({ where: { email } });
+        return phone ? phone.phonenumber : null;
     }
     async update(id, client) {
         const clientUpdate = await this.ConnexionRepository.findOne({ where: { id } });
         if (!clientUpdate) {
             throw new common_1.NotFoundException("Client doesn't exist");
         }
-        if (client.prenom) {
-            clientUpdate.prenom = client.prenom;
+        if (client.firstname) {
+            clientUpdate.firstname = client.firstname;
         }
-        if (client.nom) {
-            clientUpdate.nom = client.nom;
+        if (client.name) {
+            clientUpdate.name = client.name;
         }
         if (client.email) {
             clientUpdate.email = client.email;
         }
-        if (client.mdp) {
-            clientUpdate.mdp = client.mdp;
+        if (client.password) {
+            clientUpdate.password = client.password;
         }
-        if (client.hasOwnProperty('image')) {
-            clientUpdate.image = client.image;
-        }
-        if (client.ville) {
-            clientUpdate.ville = client.ville;
-        }
-        if (client.pays) {
-            clientUpdate.pays = client.pays;
-        }
-        if (client.description) {
-            clientUpdate.description = client.description;
-        }
-        if (client.biere) {
-            clientUpdate.biere = client.biere;
+        if (client.phonenumber) {
+            clientUpdate.phonenumber = client.phonenumber;
         }
         const updatedClient = await this.ConnexionRepository.save(clientUpdate);
         return updatedClient;
     }
     async deleteClient(id) {
         await this.ConnexionRepository.delete(id);
-    }
-    async getBiere(id) {
-        const client = await this.ConnexionRepository.find({ where: { id } });
-        const favoris = client.map(beer => beer.biere);
-        return favoris;
-    }
-    async postBeer(id, beerId, client) {
-        const clientUpdate = await this.ConnexionRepository.findOne({ where: { id } });
-        if (!clientUpdate) {
-            throw new common_1.NotFoundException("Client doesn't exist");
-        }
-        if (client.prenom) {
-            clientUpdate.prenom = client.prenom;
-        }
-        if (client.nom) {
-            clientUpdate.nom = client.nom;
-        }
-        if (client.email) {
-            clientUpdate.email = client.email;
-        }
-        if (client.mdp) {
-            clientUpdate.mdp = client.mdp;
-        }
-        if (client.hasOwnProperty('image')) {
-            clientUpdate.image = client.image;
-        }
-        if (client.ville) {
-            clientUpdate.ville = client.ville;
-        }
-        if (client.pays) {
-            clientUpdate.pays = client.pays;
-        }
-        if (client.description) {
-            clientUpdate.description = client.description;
-        }
-        if (!clientUpdate.biere) {
-            clientUpdate.biere = [];
-        }
-        clientUpdate.biere.push(beerId);
-        const updatedClient = await this.ConnexionRepository.save(clientUpdate);
-        return updatedClient;
     }
 };
 ConnexionService = __decorate([

@@ -20,15 +20,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Connexion.prototype, "prenom", void 0);
+], Connexion.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Connexion.prototype, "nom", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Connexion.prototype, "pays", void 0);
+], Connexion.prototype, "firstname", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -36,25 +32,13 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Connexion.prototype, "mdp", void 0);
+], Connexion.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Connexion.prototype, "image", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Connexion.prototype, "ville", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Connexion.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.Column)('json', { nullable: true }),
-    __metadata("design:type", Array)
-], Connexion.prototype, "biere", void 0);
+], Connexion.prototype, "phonenumber", void 0);
 Connexion = __decorate([
-    (0, typeorm_1.Entity)('connexion')
+    (0, typeorm_1.Entity)('UNITE_USERS')
 ], Connexion);
 exports.Connexion = Connexion;
 //# sourceMappingURL=connexion.entity.js.map

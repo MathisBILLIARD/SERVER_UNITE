@@ -1,34 +1,22 @@
-import { AfterLoad, BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('connexion')
+@Entity('UNITE_USERS')
 export class Connexion extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
   @Column()
-  prenom: string;
+  name: string;
 
   @Column()
-  nom: string;
-
-  @Column()
-  pays: string;
+  firstname: string;
 
   @Column()
   email: string;
 
   @Column()
-  mdp: string;
+  password: string;
 
   @Column()
-  image: string; 
-
-  @Column()
-  ville: string;
-
-  @Column()
-  description: string;
-
-  @Column('json', { nullable: true })
-biere: string[];
+  phonenumber: string;
 }

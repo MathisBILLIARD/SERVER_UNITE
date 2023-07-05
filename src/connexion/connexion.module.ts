@@ -9,9 +9,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 @Module({
-  imports: [MulterModule.register({dest: './upload',}),ServeStaticModule.forRoot({rootPath: join(__dirname, '..', 'files')}),TypeOrmModule.forRoot(typeOrmConfig), TypeOrmModule.forFeature([Connexion])],
+  imports: [MulterModule.register({ dest: './upload', }), ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'files') }), TypeOrmModule.forRoot(typeOrmConfig), TypeOrmModule.forFeature([Connexion])],
   controllers: [ConnexionController],
   providers: [ConnexionService],
-  exports:[ConnexionService],
+  exports: [ConnexionService],
 })
-export class ConnexionModule {}
+export class ConnexionModule { }

@@ -10,9 +10,6 @@ export declare class ConnexionController {
     getPersonne(email: string): Promise<Connexion>;
     updateClient(id: string, client: Connexion): Promise<Connexion>;
     deleteClient(id: string): Promise<void>;
-    createConnexion(id: string, prenom: string, nom: string, email: string, mdp: string): Promise<Connexion>;
+    createConnexion(id: string, prenom: string, nom: string, email: string, mdp: string, phonenumber: string): Promise<Connexion>;
     upload(file: any): Observable<Object>;
-    getBiere(id: string): Promise<string[][]>;
-    postBeer(id: string, beerId: string, client: Connexion): Promise<Connexion>;
-    getImage(imageName: string, res: any): Promise<any>;
 }

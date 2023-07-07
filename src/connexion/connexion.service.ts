@@ -10,7 +10,7 @@ export class ConnexionService {
     private readonly ConnexionRepository: Repository<Connexion>
   ) { }
 
-  async createConnexion(id: string, prenom: string, nom: string, email: string, mdp: string, phonenumber: string) {
+  async createConnexion(id: string, prenom: string, nom: string, email: string, mdp: string, phonenumber: string, referralcode: string) {
     const connec = new Connexion();
     connec.id = id;
     connec.firstname = prenom;
@@ -18,6 +18,7 @@ export class ConnexionService {
     connec.email = email;
     connec.password = mdp;
     connec.phonenumber = phonenumber;
+    connec.referralcode = referralcode;
     await connec.save();
     return connec;
   }
@@ -50,6 +51,11 @@ export class ConnexionService {
     return phone ? phone.phonenumber : null;
   }
 
+  async getReferralcode(referralcode: string) {
+    const code = await this.ConnexionRepository.findOne({ where: { referralcode } });
+    return code ? code.phonenumber : null;
+  }
+
 
   async update(id: string, client: Connexion) {
     const clientUpdate = await this.ConnexionRepository.findOne({ where: { id } });
@@ -72,6 +78,9 @@ export class ConnexionService {
     }
     if (client.phonenumber) {
       clientUpdate.phonenumber = client.phonenumber;
+    }
+    if (client.referralcode) {
+      clientUpdate.referralcode = client.referralcode;
     }
 
 

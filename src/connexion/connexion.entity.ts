@@ -19,4 +19,8 @@ export class Connexion extends BaseEntity {
 
   @Column()
   phonenumber: string;
+
+  @Column()
+  referralcode: string;
+
 }

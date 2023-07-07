@@ -62,6 +62,7 @@ export class ConnexionController {
     @Body('email') email: string,
     @Body('password') mdp: string,
     @Body('phonenumber') phonenumber: string,
+    @Body('referralcode') referralcode: string,
   ): Promise<Connexion> {
     const connec = new Connexion();
     connec.id = id;
@@ -70,6 +71,7 @@ export class ConnexionController {
     connec.email = email;
     connec.password = mdp;
     connec.phonenumber = phonenumber;
+    connec.referralcode = referralcode;
     await connec.save();
     return connec;
   }

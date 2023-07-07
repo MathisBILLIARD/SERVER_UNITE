@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('UNITE_USERS')
-export class Connexion extends BaseEntity {
+@Entity('EVENTS')
+export class Events extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -9,19 +9,16 @@ export class Connexion extends BaseEntity {
   name: string;
 
   @Column()
-  firstname: string;
+  price: number;
 
   @Column()
-  email: string;
+  image: string;
 
   @Column()
-  password: string;
+  description: string;
 
   @Column()
   phonenumber: string;
-
-  @Column()
-  numberParrainage: number;
 
   @Column()
   referralcode: string;

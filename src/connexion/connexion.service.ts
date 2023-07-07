@@ -10,7 +10,7 @@ export class ConnexionService {
     private readonly ConnexionRepository: Repository<Connexion>
   ) { }
 
-  async createConnexion(id: string, prenom: string, nom: string, email: string, mdp: string, phonenumber: string, referralcode: string) {
+  async createConnexion(id: string, prenom: string, nom: string, email: string, mdp: string, phonenumber: string, referralcode: string, numberParrainage: number) {
     const connec = new Connexion();
     connec.id = id;
     connec.firstname = prenom;
@@ -19,6 +19,7 @@ export class ConnexionService {
     connec.password = mdp;
     connec.phonenumber = phonenumber;
     connec.referralcode = referralcode;
+    connec.numberParrainage = numberParrainage;
     await connec.save();
     return connec;
   }
@@ -81,6 +82,9 @@ export class ConnexionService {
     }
     if (client.referralcode) {
       clientUpdate.referralcode = client.referralcode;
+    }
+    if(client.numberParrainage){
+      clientUpdate.numberParrainage = client.numberParrainage;
     }
 
 

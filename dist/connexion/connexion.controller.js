@@ -45,7 +45,7 @@ let ConnexionController = class ConnexionController {
     deleteClient(id) {
         return this.connexionService.deleteClient(id);
     }
-    async createConnexion(id, prenom, nom, email, mdp, phonenumber) {
+    async createConnexion(id, prenom, nom, email, mdp, phonenumber, referralcode, numberParrainage) {
         const connec = new connexion_entity_1.Connexion();
         connec.id = id;
         connec.firstname = prenom;
@@ -53,6 +53,8 @@ let ConnexionController = class ConnexionController {
         connec.email = email;
         connec.password = mdp;
         connec.phonenumber = phonenumber;
+        connec.referralcode = referralcode;
+        connec.numberParrainage = numberParrainage;
         await connec.save();
         return connec;
     }
@@ -109,8 +111,10 @@ __decorate([
     __param(3, (0, common_1.Body)('email')),
     __param(4, (0, common_1.Body)('password')),
     __param(5, (0, common_1.Body)('phonenumber')),
+    __param(6, (0, common_1.Body)('referralcode')),
+    __param(7, (0, common_1.Body)('numberParrainage')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, String, String, String]),
+    __metadata("design:paramtypes", [String, String, String, String, String, String, String, Number]),
     __metadata("design:returntype", Promise)
 ], ConnexionController.prototype, "createConnexion", null);
 __decorate([

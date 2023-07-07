@@ -13,11 +13,12 @@ const typeorm_config_1 = require("./config/typeorm.config");
 const connexion_entity_1 = require("./connexion/connexion.entity");
 const connexion_controller_1 = require("./connexion/connexion.controller");
 const connexion_service_1 = require("./connexion/connexion.service");
+const events_module_1 = require("./events/events.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(typeorm_config_1.typeOrmConfig), typeorm_1.TypeOrmModule.forFeature([connexion_entity_1.Connexion])],
+        imports: [typeorm_1.TypeOrmModule.forRoot(typeorm_config_1.typeOrmConfig), typeorm_1.TypeOrmModule.forFeature([connexion_entity_1.Connexion]), events_module_1.EventsModule],
         controllers: [connexion_controller_1.ConnexionController],
         providers: [connexion_service_1.ConnexionService],
     })

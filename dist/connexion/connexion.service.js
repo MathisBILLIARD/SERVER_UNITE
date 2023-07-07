@@ -21,7 +21,7 @@ let ConnexionService = class ConnexionService {
     constructor(ConnexionRepository) {
         this.ConnexionRepository = ConnexionRepository;
     }
-    async createConnexion(id, prenom, nom, email, mdp, phonenumber) {
+    async createConnexion(id, prenom, nom, email, mdp, phonenumber, referralcode, numberParrainage) {
         const connec = new connexion_entity_1.Connexion();
         connec.id = id;
         connec.firstname = prenom;
@@ -29,6 +29,8 @@ let ConnexionService = class ConnexionService {
         connec.email = email;
         connec.password = mdp;
         connec.phonenumber = phonenumber;
+        connec.referralcode = referralcode;
+        connec.numberParrainage = numberParrainage;
         await connec.save();
         return connec;
     }
@@ -55,6 +57,10 @@ let ConnexionService = class ConnexionService {
         const phone = await this.ConnexionRepository.findOne({ where: { email } });
         return phone ? phone.phonenumber : null;
     }
+    async getReferralcode(referralcode) {
+        const code = await this.ConnexionRepository.findOne({ where: { referralcode } });
+        return code ? code.phonenumber : null;
+    }
     async update(id, client) {
         const clientUpdate = await this.ConnexionRepository.findOne({ where: { id } });
         if (!clientUpdate) {
@@ -74,6 +80,12 @@ let ConnexionService = class ConnexionService {
         }
         if (client.phonenumber) {
             clientUpdate.phonenumber = client.phonenumber;
+        }
+        if (client.referralcode) {
+            clientUpdate.referralcode = client.referralcode;
+        }
+        if (client.numberParrainage) {
+            clientUpdate.numberParrainage = client.numberParrainage;
         }
         const updatedClient = await this.ConnexionRepository.save(clientUpdate);
         return updatedClient;

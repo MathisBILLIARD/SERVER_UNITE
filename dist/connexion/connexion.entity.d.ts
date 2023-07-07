@@ -6,4 +6,6 @@ export declare class Connexion extends BaseEntity {
     email: string;
     password: string;
     phonenumber: string;
+    numberParrainage: number;
+    referralcode: string;
 }

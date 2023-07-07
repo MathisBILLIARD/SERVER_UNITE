@@ -18,9 +18,6 @@ export class Events extends BaseEntity {
   description: string;
 
   @Column()
-  phonenumber: string;
-
-  @Column()
-  referralcode: string;
+  nbConso: number;
 
 }

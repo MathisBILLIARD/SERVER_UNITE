@@ -9,44 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Connexion = void 0;
+exports.Events = void 0;
 const typeorm_1 = require("typeorm");
-let Connexion = class Connexion extends typeorm_1.BaseEntity {
+let Events = class Events extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", String)
-], Connexion.prototype, "id", void 0);
+], Events.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Connexion.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Connexion.prototype, "firstname", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Connexion.prototype, "email", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Connexion.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Connexion.prototype, "phonenumber", void 0);
+], Events.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Connexion.prototype, "numberParrainage", void 0);
+], Events.prototype, "price", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Connexion.prototype, "referralcode", void 0);
-Connexion = __decorate([
-    (0, typeorm_1.Entity)('UNITE_USERS')
-], Connexion);
-exports.Connexion = Connexion;
-//# sourceMappingURL=connexion.entity.js.map
+], Events.prototype, "image", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Events.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Events.prototype, "nbConso", void 0);
+Events = __decorate([
+    (0, typeorm_1.Entity)('EVENTS')
+], Events);
+exports.Events = Events;
+//# sourceMappingURL=events.entity.js.map

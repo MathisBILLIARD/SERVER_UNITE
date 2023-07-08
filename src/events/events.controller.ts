@@ -17,7 +17,7 @@ export class EventsController {
     @Body('date') date: Date,
     @Body('start_time') start_time: string,
     @Body('price') price: number,
-    @Body('image') image: string,
+    @Body('image_name') image_name: string,
     @Body('capacity') capacity: number,
     @Body('description') description: string,
     @Body('nbConso') nbConso: number,
@@ -29,7 +29,7 @@ export class EventsController {
     event.capacity = capacity;
     event.date = date;
     event.start_time = start_time;
-    event.image = image;
+    event.image_name = image_name;
     event.description = description;
     event.nbConso = nbConso;
     await event.save();

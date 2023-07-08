@@ -21,7 +21,7 @@ export class Events extends BaseEntity {
   capacity: number;
 
   @Column()
-  image: string;
+  image_name: string;
 
   @Column()
   description: string;

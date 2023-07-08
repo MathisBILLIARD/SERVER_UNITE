@@ -53,6 +53,11 @@ export class ConnexionService {
     return personne;
   }
 
+  async getPersonneCode(referralcode: string): Promise<Connexion> {
+    const personne = await this.ConnexionRepository.findOne({ where: { referralcode } });
+    return personne;
+  }
+
   async getPhoneNumber(email: string) {
     const phone = await this.ConnexionRepository.findOne({ where: { email } });
     return phone ? phone.phonenumber : null;

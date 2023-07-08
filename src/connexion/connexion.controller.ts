@@ -43,6 +43,10 @@ export class ConnexionController {
   getPersonne(@Param('email') email: string) {
     return this.connexionService.getPersonne(email);
   }
+  @Get('client/:code')
+  getPersonneCode(@Param('code') code: string){
+    return this.connexionService.getPersonneCode(code);
+  }
 
 
   @Patch(':id')

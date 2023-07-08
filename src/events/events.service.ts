@@ -60,4 +60,9 @@ export class EventsService {
     return event;
   }
 
+  async getTout(){
+    const res = await this.EventRepository.find();
+    return res;
+  }
+
 }

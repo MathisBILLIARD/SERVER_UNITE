@@ -58,6 +58,10 @@ export class EventsController {
   getPersonne(@Param('id') id: string):Promise<Events> {
     return this.eventsService.getEvent(id);
   }
+  @Get('total')
+  getTout(){
+    return this.eventsService.getTout();
+  }
 
   @Patch(':id')
   updateClient(

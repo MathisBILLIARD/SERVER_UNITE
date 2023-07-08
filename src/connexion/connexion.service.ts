@@ -36,6 +36,19 @@ export class ConnexionService {
     return partys
   }
 
+  async getUserByParty(idParty: number):Promise<Connexion[]> {
+    let clients: Connexion[] = [];
+    const res = await this.ConnexionRepository.find();
+  
+    for (let client of res) {
+      if (client.party_id.includes(idParty)) {
+        clients.push(client);
+      }
+    }
+    return clients;
+  }
+  
+
   async getCode(){
     const res = await this.ConnexionRepository.find();
     const code = res.map(cd => cd.referralcode);

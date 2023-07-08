@@ -44,6 +44,11 @@ export class ConnexionController {
     return this.connexionService.getParty(email);
   }
 
+  @Get('client/party/:party_id')
+  getUsersByParty(@Param('party_id') party_id: number):Promise<Connexion[]>{
+    return this.connexionService.getUserByParty(party_id);
+  }
+
   @Get(':email')
   getPersonne(@Param('email') email: string) {
     return this.connexionService.getPersonne(email);

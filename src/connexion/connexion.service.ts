@@ -7,10 +7,19 @@ import { Repository } from 'typeorm';
 export class ConnexionService {
   constructor(
     @InjectRepository(Connexion)
-    private readonly ConnexionRepository: Repository<Connexion>
-  ) { }
+    private readonly ConnexionRepository: Repository<Connexion>,
+  ) {}
 
-  async createConnexion(id: string, prenom: string, nom: string, email: string, mdp: string, phonenumber: string, referralcode: string, numberParrainage: number) {
+  async createConnexion(
+    id: string,
+    prenom: string,
+    nom: string,
+    email: string,
+    mdp: string,
+    phonenumber: string,
+    referralcode: string,
+    numberParrainage: number,
+  ) {
     const connec = new Connexion();
     connec.id = id;
     connec.firstname = prenom;
@@ -26,63 +35,52 @@ export class ConnexionService {
 
   async getEmail() {
     const res = await this.ConnexionRepository.find();
-    const client = res.map(cli => cli.email);
+    const client = res.map((cli) => cli.email);
     return client;
   }
 
-  async getParty(email: string){
-    const client = await this.ConnexionRepository.findOne({where: {email}});
+  async getParty(email: string) {
+    const client = await this.ConnexionRepository.findOne({ where: { email } });
     const partys = client.party_id;
-    return partys
+    return partys;
   }
 
-  async getUserByParty(idParty: string): Promise<Connexion[]> {
-    const clients: Connexion[] = [];
-    const res = await this.ConnexionRepository.find();
-    
-    for (let client of res) {
-      const partyIdJSON = JSON.stringify(idParty);
-      const partyIds = Object.values(client.party_id);
-      
-      for (let party of partyIds) {
-        if (JSON.stringify(party) === partyIdJSON) {
-          clients.push(client);
-          break;
-        }
-      }
-    }
-    
-    return clients;
+  async findByPartyId(partyId: string): Promise<Connexion[]> {
+    return this.ConnexionRepository
+      .createQueryBuilder('connexion')
+      .where(`connexion.party_id::jsonb @> '[${partyId}]'::jsonb`)
+      .getMany();
   }
-  
-  
-  
 
-  async getCode(){
+  async getCode() {
     const res = await this.ConnexionRepository.find();
-    const code = res.map(cd => cd.referralcode);
+    const code = res.map((cd) => cd.referralcode);
     return code;
   }
 
   async getPrenom() {
     const res = await this.ConnexionRepository.find();
-    const nom = res.map(iencli => iencli.firstname);
+    const nom = res.map((iencli) => iencli.firstname);
     return nom;
   }
 
   async getMdp() {
     const res = await this.ConnexionRepository.find();
-    const mdp = res.map(pass => pass.password);
+    const mdp = res.map((pass) => pass.password);
     return mdp;
   }
 
   async getPersonne(email: string): Promise<Connexion> {
-    const personne = await this.ConnexionRepository.findOne({ where: { email } });
+    const personne = await this.ConnexionRepository.findOne({
+      where: { email },
+    });
     return personne;
   }
 
   async getPersonneCode(referralcode: string): Promise<Connexion> {
-    const personne = await this.ConnexionRepository.findOne({ where: { referralcode } });
+    const personne = await this.ConnexionRepository.findOne({
+      where: { referralcode },
+    });
     return personne;
   }
 
@@ -92,13 +90,16 @@ export class ConnexionService {
   }
 
   async getReferralcode(referralcode: string) {
-    const code = await this.ConnexionRepository.findOne({ where: { referralcode } });
+    const code = await this.ConnexionRepository.findOne({
+      where: { referralcode },
+    });
     return code ? code.phonenumber : null;
   }
 
-
   async update(id: string, client: Connexion) {
-    const clientUpdate = await this.ConnexionRepository.findOne({ where: { id } });
+    const clientUpdate = await this.ConnexionRepository.findOne({
+      where: { id },
+    });
 
     if (!clientUpdate) {
       throw new NotFoundException("Client doesn't exist");
@@ -122,13 +123,12 @@ export class ConnexionService {
     if (client.referralcode) {
       clientUpdate.referralcode = client.referralcode;
     }
-    if(client.numberParrainage){
+    if (client.numberParrainage) {
       clientUpdate.numberParrainage = client.numberParrainage;
     }
-    if(client.party_id){
+    if (client.party_id) {
       clientUpdate.party_id = client.party_id;
     }
-
 
     const updatedClient = await this.ConnexionRepository.save(clientUpdate);
     return updatedClient;
@@ -137,6 +137,4 @@ export class ConnexionService {
   async deleteClient(id: string) {
     await this.ConnexionRepository.delete(id);
   }
-
 }
-

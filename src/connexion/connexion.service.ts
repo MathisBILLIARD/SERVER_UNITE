@@ -30,6 +30,12 @@ export class ConnexionService {
     return client;
   }
 
+  async getParty(email: string){
+    const client = await this.ConnexionRepository.findOne({where: {email}});
+    const partys = client.party_id;
+    return partys
+  }
+
   async getCode(){
     const res = await this.ConnexionRepository.find();
     const code = res.map(cd => cd.referralcode);
@@ -96,6 +102,9 @@ export class ConnexionService {
     }
     if(client.numberParrainage){
       clientUpdate.numberParrainage = client.numberParrainage;
+    }
+    if(client.party_id){
+      clientUpdate.party_id = client.party_id;
     }
 
 

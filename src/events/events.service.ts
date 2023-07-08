@@ -30,6 +30,15 @@ export class EventsService {
     if (event.description) {
       eventUpdate.description = event.description;
     }
+    if(event.capacity){
+      eventUpdate.capacity = event.capacity;
+    }
+    if(event.date){
+      eventUpdate.date = event.date;
+    }
+    if(event.start_time){
+      eventUpdate.start_time = event.start_time;
+    }
     const updatedEvent = await this.EventRepository.save(eventUpdate);
     return updatedEvent;
   }

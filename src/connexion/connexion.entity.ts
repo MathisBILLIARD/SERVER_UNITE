@@ -26,4 +26,7 @@ export class Connexion extends BaseEntity {
   @Column()
   referralcode: string;
 
+  @Column('json', {nullable: true})
+  party_id: number[];
+
 }

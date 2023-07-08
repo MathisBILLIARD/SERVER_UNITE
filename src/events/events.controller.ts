@@ -14,8 +14,11 @@ export class EventsController {
   async createConnexion(
     @Body('id') id: string,
     @Body('name') nom: string,
+    @Body('date') date: Date,
+    @Body('start_time') start_time: string,
     @Body('price') price: number,
     @Body('image') image: string,
+    @Body('capacity') capacity: number,
     @Body('description') description: string,
     @Body('nbConso') nbConso: number,
   ): Promise<Events> {
@@ -23,6 +26,9 @@ export class EventsController {
     event.id = id;
     event.name = nom;
     event.price = price;
+    event.capacity = capacity;
+    event.date = date;
+    event.start_time = start_time;
     event.image = image;
     event.description = description;
     event.nbConso = nbConso;
@@ -45,7 +51,7 @@ export class EventsController {
   }
 
   @Get(':id')
-  getPersonne(@Param('id') id: string) {
+  getPersonne(@Param('id') id: string):Promise<Events> {
     return this.eventsService.getEvent(id);
   }
 

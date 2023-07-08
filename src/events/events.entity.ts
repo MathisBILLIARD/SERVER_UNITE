@@ -12,6 +12,15 @@ export class Events extends BaseEntity {
   price: number;
 
   @Column()
+  date : Date;
+
+  @Column({ type: 'time' })
+  start_time : string;
+
+  @Column()
+  capacity: number;
+
+  @Column()
   image: string;
 
   @Column()

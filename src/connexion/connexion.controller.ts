@@ -39,6 +39,11 @@ export class ConnexionController {
     return this.connexionService.getMdp();
   }
 
+  @Get('party/:email')
+  getParty(@Param('email') email: string){
+    return this.connexionService.getParty(email);
+  }
+
   @Get(':email')
   getPersonne(@Param('email') email: string) {
     return this.connexionService.getPersonne(email);
@@ -73,6 +78,7 @@ export class ConnexionController {
     @Body('phonenumber') phonenumber: string,
     @Body('referralcode') referralcode: string,
     @Body('numberParrainage') numberParrainage: number,
+    @Body('party_id') party_id: number[]
   ): Promise<Connexion> {
     const connec = new Connexion();
     connec.id = id;
@@ -83,6 +89,7 @@ export class ConnexionController {
     connec.phonenumber = phonenumber;
     connec.referralcode = referralcode;
     connec.numberParrainage = numberParrainage;
+    connec.party_id = party_id
     await connec.save();
     return connec;
   }

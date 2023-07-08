@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('EVENTS')
+@Entity('UNITE_PARTY')
 export class Events extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;

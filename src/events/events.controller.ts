@@ -58,7 +58,8 @@ export class EventsController {
   getPersonne(@Param('id') id: string):Promise<Events> {
     return this.eventsService.getEvent(id);
   }
-  @Get('total')
+
+  @Get('total/tout')
   getTout(){
     return this.eventsService.getTout();
   }

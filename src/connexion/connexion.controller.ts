@@ -45,7 +45,7 @@ export class ConnexionController {
   }
 
   @Get('client/party/:party_id')
-  getUsersByParty(@Param('party_id') party_id: number):Promise<Connexion[]>{
+  getUsersByParty(@Param('party_id') party_id: string):Promise<Connexion[]>{
     return this.connexionService.getUserByParty(party_id);
   }
 
@@ -83,7 +83,7 @@ export class ConnexionController {
     @Body('phonenumber') phonenumber: string,
     @Body('referralcode') referralcode: string,
     @Body('numberParrainage') numberParrainage: number,
-    @Body('party_id') party_id: number[]
+    @Body('party_id') party_id: string[]
   ): Promise<Connexion> {
     const connec = new Connexion();
     connec.id = id;

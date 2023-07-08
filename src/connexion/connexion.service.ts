@@ -36,7 +36,7 @@ export class ConnexionService {
     return partys
   }
 
-  async getUserByParty(idParty: number):Promise<Connexion[]> {
+  async getUserByParty(idParty: string):Promise<Connexion[]> {
     let clients: Connexion[] = [];
     const res = await this.ConnexionRepository.find();
   

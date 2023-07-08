@@ -28,6 +28,11 @@ export class ConnexionController {
     return this.connexionService.getEmail();
   }
 
+  @Get('/code')
+  getCode(){
+    return this.connexionService.getCode(); 
+  }
+
   @Get('/pass')
   getMdp() {
     console.log('Requête GET /pass reçue');

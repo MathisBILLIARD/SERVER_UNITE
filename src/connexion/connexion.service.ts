@@ -30,6 +30,12 @@ export class ConnexionService {
     return client;
   }
 
+  async getCode(){
+    const res = await this.ConnexionRepository.find();
+    const code = res.map(cd => cd.referralcode);
+    return code;
+  }
+
   async getPrenom() {
     const res = await this.ConnexionRepository.find();
     const nom = res.map(iencli => iencli.firstname);

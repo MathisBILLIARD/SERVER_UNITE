@@ -48,9 +48,10 @@ export class ConnexionService {
   async findByPartyId(partyId: string): Promise<Connexion[]> {
     return this.ConnexionRepository
       .createQueryBuilder('connexion')
-      .where(`connexion.party_id::jsonb @> '[${partyId}]'::jsonb`)
+      .where('JSON_CONTAINS(connexion.party_id, :partyId)', { partyId: partyId })
       .getMany();
   }
+
 
   async getCode() {
     const res = await this.ConnexionRepository.find();

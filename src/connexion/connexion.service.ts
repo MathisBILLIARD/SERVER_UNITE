@@ -39,16 +39,22 @@ export class ConnexionService {
   async getUserByParty(idParty: string): Promise<Connexion[]> {
     const clients: Connexion[] = [];
     const res = await this.ConnexionRepository.find();
-  
+    
     for (let client of res) {
-      const partyIds = Object.keys(client.party_id).filter(key => key);
-      if (partyIds.includes(idParty)) {
-        clients.push(client);
+      const partyIdJSON = JSON.stringify(idParty);
+      const partyIds = Object.values(client.party_id);
+      
+      for (let party of partyIds) {
+        if (JSON.stringify(party) === partyIdJSON) {
+          clients.push(client);
+          break;
+        }
       }
     }
-  
+    
     return clients;
   }
+  
   
   
 

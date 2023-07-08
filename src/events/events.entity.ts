@@ -29,4 +29,10 @@ export class Events extends BaseEntity {
   @Column()
   nbConso: number;
 
+  @Column()
+  place: string;
+
+  @Column()
+  address: string;
+
 }

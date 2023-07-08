@@ -39,6 +39,12 @@ export class EventsService {
     if(event.start_time){
       eventUpdate.start_time = event.start_time;
     }
+    if(event.place){
+      eventUpdate.place = event.place;
+    }
+    if(event.address){
+      eventUpdate.address = event.address;
+    }
     const updatedEvent = await this.EventRepository.save(eventUpdate);
     return updatedEvent;
   }

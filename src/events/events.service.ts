@@ -18,8 +18,8 @@ export class EventsService {
     if (event.name) {
       eventUpdate.name = event.name;
     }
-    if (event.image) {
-      eventUpdate.image = event.image;
+    if (event.image_name) {
+      eventUpdate.image_name = event.image_name;
     }
     if (event.price) {
       eventUpdate.price = event.price;

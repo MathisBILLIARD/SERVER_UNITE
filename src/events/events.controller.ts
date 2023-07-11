@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Param, UseInterceptors, UploadedFile, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseInterceptors, UploadedFile, Patch, Delete, Res } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Events } from './events.entity';
 import { diskStorage } from 'multer';
 import { Observable, of } from 'rxjs';
 import * as path from 'path';
+import { join } from 'path';
 
 @Controller('events')
 export class EventsController {
@@ -75,6 +76,16 @@ export class EventsController {
   @Delete(':id')
   deleteClient(@Param('id') id: string) {
     return this.eventsService.deleteEvent(id);
+  }
+
+  @Get('photo/:imagename')
+  async getImage(@Param('imagename') imageName: string, @Res() res): Promise<any> {
+    try {
+      const imagePath = join(process.cwd(), 'upload', imageName);
+      return res.sendFile(imagePath);
+    } catch (error) {
+      return res.status(404).json({ error: 'Image not found' });
+    }
   }
 
 }

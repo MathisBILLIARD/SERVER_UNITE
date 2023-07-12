@@ -83,7 +83,7 @@ export class ConnexionController {
     @Body('phonenumber') phonenumber: string,
     @Body('referralcode') referralcode: string,
     @Body('numberParrainage') numberParrainage: number,
-    @Body('party_id') party_id: string[]
+    @Body('party_id') party_id: Record<string, number>
   ): Promise<Connexion> {
     const connec = new Connexion();
     connec.id = id;

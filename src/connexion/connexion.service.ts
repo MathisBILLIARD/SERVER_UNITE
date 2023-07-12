@@ -19,7 +19,7 @@ export class ConnexionService {
     phonenumber: string,
     referralcode: string,
     numberParrainage: number,
-    party_id: string[]
+    party_id: Record<string, number>
   ) {
     const connec = new Connexion();
     connec.id = id;

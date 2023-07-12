@@ -13,13 +13,16 @@ export class EventsService {
     const eventUpdate = await this.EventRepository.findOne({ where: { id } });
 
     if (!eventUpdate) {
-      throw new NotFoundException("Client doesn't exist");
+      throw new NotFoundException("Event doesn't exist");
     }
     if (event.name) {
       eventUpdate.name = event.name;
     }
     if (event.image_name) {
       eventUpdate.image_name = event.image_name;
+    }
+    if( event.video_name){
+      eventUpdate.video_name = event.video_name;
     }
     if (event.price) {
       eventUpdate.price = event.price;

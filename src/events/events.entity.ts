@@ -24,6 +24,9 @@ export class Events extends BaseEntity {
   image_name: string;
 
   @Column()
+  video_name: string;
+
+  @Column()
   description: string;
 
   @Column()

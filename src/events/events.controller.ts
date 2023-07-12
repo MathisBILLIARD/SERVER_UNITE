@@ -20,6 +20,7 @@ export class EventsController {
     @Body('place') place: string,
     @Body('price') price: number,
     @Body('image_name') image_name: string,
+    @Body('video_name') video_name: string,
     @Body('capacity') capacity: number,
     @Body('description') description: string,
     @Body('nbConso') nbConso: number,
@@ -33,6 +34,7 @@ export class EventsController {
     event.date = date;
     event.start_time = start_time;
     event.image_name = image_name;
+    event.video_name = video_name;
     event.description = description;
     event.nbConso = nbConso;
     event.place = place;

@@ -18,12 +18,11 @@ export class EventsController {
     @Body('date') date: Date,
     @Body('start_time') start_time: string,
     @Body('place') place: string,
-    @Body('price') price: number,
+    @Body('price') price: Record<string, number>,
     @Body('image_name') image_name: string,
     @Body('video_name') video_name: string,
     @Body('capacity') capacity: number,
     @Body('description') description: string,
-    @Body('nbConso') nbConso: number,
     @Body('address') address: string,
   ): Promise<Events> {
     const event = new Events();
@@ -36,7 +35,6 @@ export class EventsController {
     event.image_name = image_name;
     event.video_name = video_name;
     event.description = description;
-    event.nbConso = nbConso;
     event.place = place;
     event.address = address;
     await event.save();

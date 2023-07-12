@@ -8,8 +8,8 @@ export class Events extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
-  price: number;
+  @Column({ type: 'json', nullable: true })
+  price: Record<string, number>;
 
   @Column()
   date : Date;
@@ -28,9 +28,6 @@ export class Events extends BaseEntity {
 
   @Column()
   description: string;
-
-  @Column()
-  nbConso: number;
 
   @Column()
   place: string;

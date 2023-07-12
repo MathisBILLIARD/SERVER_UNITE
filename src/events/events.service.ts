@@ -27,9 +27,6 @@ export class EventsService {
     if (event.price) {
       eventUpdate.price = event.price;
     }
-    if (event.nbConso) {
-      eventUpdate.nbConso = event.nbConso;
-    }
     if (event.description) {
       eventUpdate.description = event.description;
     }

@@ -43,7 +43,7 @@ export class EventsController {
     return event;
   } 
   @Post('upload')
-  @UseInterceptors(FileInterceptor('image', {
+  @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
       destination: './upload',
       filename: (req, file, cb) => {
@@ -54,7 +54,7 @@ export class EventsController {
     })
   }))
   upload(@UploadedFile() file): Observable<Object> {
-    return of({ imagePath: file.filename });
+    return of({ filePath: file.filename });
   }
 
   @Get(':id')

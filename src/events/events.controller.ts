@@ -18,7 +18,7 @@ export class EventsController {
     @Body('date') date: Date,
     @Body('start_time') start_time: string,
     @Body('place') place: string,
-    @Body('price') price: Record<string, number>,
+    @Body('price') price: Record<string, number[]>,
     @Body('image_name') image_name: string,
     @Body('video_name') video_name: string,
     @Body('capacity') capacity: number,

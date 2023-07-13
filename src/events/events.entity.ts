@@ -9,7 +9,7 @@ export class Events extends BaseEntity {
   name: string;
 
   @Column({ type: 'json', nullable: true })
-  price: Record<string, number>;
+  price: Record<string, number[]>;
 
   @Column()
   date : Date;

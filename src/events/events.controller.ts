@@ -17,6 +17,7 @@ export class EventsController {
     @Body('name') nom: string,
     @Body('date') date: Date,
     @Body('start_time') start_time: string,
+    @Body('end_time') end_time: string,
     @Body('place') place: string,
     @Body('price') price: Record<string, number[]>,
     @Body('image_name') image_name: string,
@@ -32,6 +33,7 @@ export class EventsController {
     event.capacity = capacity;
     event.date = date;
     event.start_time = start_time;
+    event.end_time = end_time;
     event.image_name = image_name;
     event.video_name = video_name;
     event.description = description;

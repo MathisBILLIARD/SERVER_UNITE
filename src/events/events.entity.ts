@@ -17,6 +17,9 @@ export class Events extends BaseEntity {
   @Column({ type: 'time' })
   start_time : string;
 
+  @Column({ type: 'time' })
+  end_time : string;
+
   @Column()
   capacity: number;
 

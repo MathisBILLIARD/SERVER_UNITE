@@ -39,6 +39,9 @@ export class EventsService {
     if(event.start_time){
       eventUpdate.start_time = event.start_time;
     }
+    if(event.end_time){
+      eventUpdate.end_time = event.end_time;
+    }
     if(event.place){
       eventUpdate.place = event.place;
     }

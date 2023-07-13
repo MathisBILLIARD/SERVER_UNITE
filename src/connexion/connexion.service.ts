@@ -17,6 +17,8 @@ export class ConnexionService {
     email: string,
     mdp: string,
     phonenumber: string,
+    numberNight: number,
+    bracelet: boolean,
     referralcode: string,
     numberParrainage: number,
     party_id: Record<string, number>
@@ -29,6 +31,8 @@ export class ConnexionService {
     connec.password = mdp;
     connec.phonenumber = phonenumber;
     connec.referralcode = referralcode;
+    connec.bracelet = bracelet;
+    connec.numberNight = numberNight;
     connec.numberParrainage = numberParrainage;
     connec.party_id = party_id;
     await connec.save();
@@ -123,6 +127,12 @@ export class ConnexionService {
     }
     if (client.phonenumber) {
       clientUpdate.phonenumber = client.phonenumber;
+    }
+    if(client.bracelet){
+      clientUpdate.bracelet = client.bracelet;
+    }
+    if(client.numberNight){
+      clientUpdate.numberNight= client.numberNight;
     }
     if (client.referralcode) {
       clientUpdate.referralcode = client.referralcode;

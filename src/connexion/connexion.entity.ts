@@ -15,10 +15,16 @@ export class Connexion extends BaseEntity {
   email: string;
 
   @Column()
+  bracelet: boolean;
+
+  @Column()
   password: string;
 
   @Column()
   phonenumber: string;
+
+  @Column()
+  numberNight: number;
 
   @Column()
   numberParrainage: number;

@@ -81,6 +81,8 @@ export class ConnexionController {
     @Body('email') email: string,
     @Body('password') mdp: string,
     @Body('phonenumber') phonenumber: string,
+    @Body('numberNight') numberNight: number,
+    @Body('bracelet') bracelet: boolean,
     @Body('referralcode') referralcode: string,
     @Body('numberParrainage') numberParrainage: number,
     @Body('party_id') party_id: Record<string, number>
@@ -92,6 +94,8 @@ export class ConnexionController {
     connec.email = email;
     connec.password = mdp;
     connec.phonenumber = phonenumber;
+    connec.bracelet = bracelet;
+    connec.numberNight = numberNight;
     connec.referralcode = referralcode;
     connec.numberParrainage = numberParrainage;
     connec.party_id = party_id

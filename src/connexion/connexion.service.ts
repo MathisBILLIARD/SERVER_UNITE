@@ -52,10 +52,16 @@ export class ConnexionService {
   }
 
   async findByPartyId(partyId: string): Promise<Connexion[]> {
-    return this.ConnexionRepository
+    const connexions = await this.ConnexionRepository
       .createQueryBuilder('connexion')
-      .where(`JSON_EXTRACT(connexion.party_id, "$.${partyId}") IS NOT NULL`)
       .getMany();
+  
+    const validConnexions = connexions.filter(connexion => {
+      const partyIdKey = partyId.toString();
+      return connexion.party_id && connexion.party_id[partyIdKey] !== undefined;
+    });
+  
+    return validConnexions;
   }
   
 

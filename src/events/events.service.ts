@@ -48,6 +48,12 @@ export class EventsService {
     if(event.address){
       eventUpdate.address = event.address;
     }
+    if(event.geo){
+      eventUpdate.geo = event.geo;
+    }
+    if(event.music){
+      eventUpdate.music = event.music;
+    }
     const updatedEvent = await this.EventRepository.save(eventUpdate);
     return updatedEvent;
   }

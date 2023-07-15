@@ -25,6 +25,8 @@ export class EventsController {
     @Body('capacity') capacity: number,
     @Body('description') description: string,
     @Body('address') address: string,
+    @Body('geo') geo: string[],
+    @Body('music') music: string[]
   ): Promise<Events> {
     const event = new Events();
     event.id = id;
@@ -39,6 +41,8 @@ export class EventsController {
     event.description = description;
     event.place = place;
     event.address = address;
+    event.geo = geo;
+    event.music = music;
     await event.save();
     return event;
   } 

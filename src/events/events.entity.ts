@@ -38,4 +38,10 @@ export class Events extends BaseEntity {
   @Column()
   address: string;
 
+  @Column({ type: 'json', nullable: true })
+  geo: string[];
+
+  @Column({ type: 'json', nullable: true })
+  music: string[];
+
 }

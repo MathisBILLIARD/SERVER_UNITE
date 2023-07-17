@@ -26,7 +26,8 @@ export class EventsController {
     @Body('description') description: string,
     @Body('address') address: string,
     @Body('geo') geo: string[],
-    @Body('music') music: string[]
+    @Body('music') music: string[],
+    @Body('dispo') dispo: Record<number, boolean>
   ): Promise<Events> {
     const event = new Events();
     event.id = id;
@@ -43,6 +44,7 @@ export class EventsController {
     event.address = address;
     event.geo = geo;
     event.music = music;
+    event.dispo = dispo;
     await event.save();
     return event;
   } 

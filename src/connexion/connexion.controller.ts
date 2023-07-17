@@ -85,7 +85,8 @@ export class ConnexionController {
     @Body('bracelet') bracelet: boolean,
     @Body('referralcode') referralcode: string,
     @Body('numberParrainage') numberParrainage: number,
-    @Body('party_id') party_id: Record<string, number>
+    @Body('party_id') party_id: Record<string, number>,
+    @Body('favoris') favoris: number[]
   ): Promise<Connexion> {
     const connec = new Connexion();
     connec.id = id;
@@ -98,7 +99,8 @@ export class ConnexionController {
     connec.numberNight = numberNight;
     connec.referralcode = referralcode;
     connec.numberParrainage = numberParrainage;
-    connec.party_id = party_id
+    connec.party_id = party_id;
+    connec.favoris = favoris;
     await connec.save();
     return connec;
   }

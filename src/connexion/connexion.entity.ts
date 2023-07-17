@@ -35,4 +35,7 @@ export class Connexion extends BaseEntity {
   @Column({ type: 'json', nullable: true })
   party_id: Record<string, number>;
 
+  @Column({ type: 'json', nullable: true })
+  favoris: number[];
+
 }

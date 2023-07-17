@@ -44,4 +44,7 @@ export class Events extends BaseEntity {
   @Column({ type: 'json', nullable: true })
   music: string[];
 
+  @Column({ type: 'json', nullable: true })
+  dispo: Record<number, boolean>;
+
 }

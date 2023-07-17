@@ -21,7 +21,8 @@ export class ConnexionService {
     bracelet: boolean,
     referralcode: string,
     numberParrainage: number,
-    party_id: Record<string, number>
+    party_id: Record<string, number>,
+    favoris: number[]
   ) {
     const connec = new Connexion();
     connec.id = id;
@@ -35,6 +36,7 @@ export class ConnexionService {
     connec.numberNight = numberNight;
     connec.numberParrainage = numberParrainage;
     connec.party_id = party_id;
+    connec.favoris = favoris;
     await connec.save();
     return connec;
   }
@@ -148,6 +150,9 @@ export class ConnexionService {
     }
     if (client.party_id) {
       clientUpdate.party_id = client.party_id;
+    }
+    if(client.favoris){
+      clientUpdate.favoris = client.favoris;
     }
 
     const updatedClient = await this.ConnexionRepository.save(clientUpdate);

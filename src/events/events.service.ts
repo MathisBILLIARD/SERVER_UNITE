@@ -54,6 +54,9 @@ export class EventsService {
     if(event.music){
       eventUpdate.music = event.music;
     }
+    if(event.dispo){
+      eventUpdate.dispo = event.dispo;
+    }
     const updatedEvent = await this.EventRepository.save(eventUpdate);
     return updatedEvent;
   }

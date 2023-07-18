@@ -44,6 +44,11 @@ export class ConnexionController {
     return this.connexionService.getParty(email);
   }
 
+  @Get('client/attente/:party_id')
+  getUsersByattente(@Param('party_id') party_id: string):Promise<Connexion[]>{
+    return this.connexionService.findAttenteByPartyId(party_id);
+  }
+
   @Get('client/party/:party_id')
   getUsersByParty(@Param('party_id') party_id: string):Promise<Connexion[]>{
     return this.connexionService.findByPartyId(party_id);
@@ -85,6 +90,7 @@ export class ConnexionController {
     @Body('bracelet') bracelet: boolean,
     @Body('referralcode') referralcode: string,
     @Body('numberParrainage') numberParrainage: number,
+    @Body('attente') attente: Record<string, number>,
     @Body('party_id') party_id: Record<string, number>,
     @Body('favoris') favoris: number[]
   ): Promise<Connexion> {
@@ -99,6 +105,7 @@ export class ConnexionController {
     connec.numberNight = numberNight;
     connec.referralcode = referralcode;
     connec.numberParrainage = numberParrainage;
+    connec.attente = attente;
     connec.party_id = party_id;
     connec.favoris = favoris;
     await connec.save();

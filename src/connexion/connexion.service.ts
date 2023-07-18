@@ -21,6 +21,7 @@ export class ConnexionService {
     bracelet: boolean,
     referralcode: string,
     numberParrainage: number,
+    attente: Record<string, number>,
     party_id: Record<string, number>,
     favoris: number[]
   ) {
@@ -35,6 +36,7 @@ export class ConnexionService {
     connec.bracelet = bracelet;
     connec.numberNight = numberNight;
     connec.numberParrainage = numberParrainage;
+    connec.attente = attente;
     connec.party_id = party_id;
     connec.favoris = favoris;
     await connec.save();
@@ -65,9 +67,20 @@ export class ConnexionService {
   
     return validConnexions;
   }
+
+  async findAttenteByPartyId(partyId: string): Promise<Connexion[]> {
+    const connexions = await this.ConnexionRepository
+      .createQueryBuilder('connexion')
+      .getMany();
   
-
-
+    const validConnexions = connexions.filter(connexion => {
+      const partyIdKey = partyId.toString();
+      return connexion.attente && connexion.attente[partyIdKey] !== undefined;
+    });
+  
+    return validConnexions;
+  }
+  
   async getCode() {
     const res = await this.ConnexionRepository.find();
     const code = res.map((cd) => cd.referralcode);
@@ -147,6 +160,9 @@ export class ConnexionService {
     }
     if (client.numberParrainage) {
       clientUpdate.numberParrainage = client.numberParrainage;
+    }
+    if(client.attente){
+      clientUpdate.attente = client.attente;
     }
     if (client.party_id) {
       clientUpdate.party_id = client.party_id;

@@ -21,6 +21,10 @@ export class ConnexionController {
     return this.connexionService.getPrenom();
 
   }
+  @Get('/tout')
+  getTout(){
+    return this.connexionService.getTout();
+  }
 
   @Get('/email')
   getEmail() {

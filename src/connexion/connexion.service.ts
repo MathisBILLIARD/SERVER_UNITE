@@ -49,6 +49,11 @@ export class ConnexionService {
     return client;
   }
 
+  async getTout(){
+    const res = await this.ConnexionRepository.find();
+    return res;
+  }
+
   async getParty(email: string) {
     const client = await this.ConnexionRepository.findOne({ where: { email } });
     const partys = client.party_id;

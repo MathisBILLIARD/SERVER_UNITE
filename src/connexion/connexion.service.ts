@@ -73,6 +73,19 @@ export class ConnexionService {
     return validConnexions;
   }
 
+  async findAttByPartyId(partyId: string): Promise<Connexion[]> {
+    const connexions = await this.ConnexionRepository
+      .createQueryBuilder('connexion')
+      .getMany();
+  
+    const validConnexions = connexions.filter(connexion => {
+      const partyIdKey = partyId.toString();
+      return connexion.attente && connexion.attente[partyIdKey] !== undefined;
+    });
+  
+    return validConnexions;
+  }
+
   async findAttenteByPartyId(): Promise<Connexion[]> {
     const connexions = await this.ConnexionRepository
       .createQueryBuilder('connexion')

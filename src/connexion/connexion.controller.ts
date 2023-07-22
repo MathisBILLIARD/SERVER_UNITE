@@ -58,6 +58,11 @@ export class ConnexionController {
     return this.connexionService.findByPartyId(party_id);
   }
 
+  @Get('client/attente/:party_id')
+  getAttenteByParty(@Param('party_id') party_id: string):Promise<Connexion[]>{
+    return this.connexionService.findAttByPartyId(party_id);
+  }
+
   @Get(':email')
   getPersonne(@Param('email') email: string) {
     return this.connexionService.getPersonne(email);

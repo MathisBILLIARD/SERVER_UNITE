@@ -21,6 +21,9 @@ export class Events extends BaseEntity {
   end_time : string;
 
   @Column()
+  boat: string;
+
+  @Column()
   capacity: number;
 
   @Column()

@@ -24,6 +24,7 @@ export class EventsController {
     @Body('video_name') video_name: string,
     @Body('capacity') capacity: number,
     @Body('description') description: string,
+    @Body('boat') boat: string,
     @Body('address') address: string,
     @Body('geo') geo: string[],
     @Body('music') music: string[],
@@ -40,6 +41,7 @@ export class EventsController {
     event.image_name = image_name;
     event.video_name = video_name;
     event.description = description;
+    event.boat = boat;
     event.place = place;
     event.address = address;
     event.geo = geo;

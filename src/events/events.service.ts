@@ -57,6 +57,9 @@ export class EventsService {
     if(event.dispo){
       eventUpdate.dispo = event.dispo;
     }
+    if(event.boat){
+      eventUpdate.boat = event.boat;
+    }
     const updatedEvent = await this.EventRepository.save(eventUpdate);
     return updatedEvent;
   }
